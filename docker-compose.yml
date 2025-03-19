@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  go_db:
+    image: postgres:latest # Usa a imagem oficial do PostgreSQL
+    container_name: go_db
+    env_file:
+      - .env # referencia o arquivo .env no docker-compose
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER} # Nome de usuário do banco de dados
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Senha do banco de dados
+      POSTGRES_DB: ${POSTGRES_DB} # Nome do banco de dados
+    ports:
+      - "5432:5432" # Mapeia a porta 5432 do contêiner para a porta 5432 do host
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persiste os dados do PostgreSQL
+    restart: always # Reinicia o contêiner automaticamente em caso de falha
+
+volumes:
+  postgres_data: {} #
