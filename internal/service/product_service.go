@@ -17,18 +17,23 @@ func (s *ProductService) GetAll() ([]model.Product, error) {
 	return s.repo.GetAll()
 }
 
-// func (s *ProductService) GetByID(id int) (*model.Product, error) {
-// 	return s.repo.GetByID(id)
-// }
+func (s *ProductService) GetByID(id int) (*model.Product, error) {
+	return s.repo.GetByID(id)
+}
 
-// func (s *ProductService) Create(p model.Product) model.Product {
-// 	return s.repo.Create(p)
-// }
+func (s *ProductService) Create(p model.Product) (model.Product, error) {
+	productId, err := s.repo.Create(p)
+	if err != nil {
+		return model.Product{}, err
+	} 
+	p.ID = productId	
+	return p, nil
+}
 
-// func (s *ProductService) Update(id int, p model.Product) (*model.Product, error) {
-// 	return s.repo.Update(id, p)
-// }
+func (s *ProductService) Update(id int, p model.Product) (*model.Product, error) {
+	return s.repo.Update(id, p)
+}
 
-// func (s *ProductService) Delete(id int) error {
-// 	return s.repo.Delete(id)
-// }
+func (s *ProductService) Delete(id int) error {
+	return s.repo.Delete(id)
+}
