@@ -1,6 +1,15 @@
 version: "3.9"
 
 services:
+  go_app:
+    build: . # Usa o Dockerfile no diretório atual
+    container_name: go_app
+    image: go-api-tutorial # Nome da imagem
+    ports:
+      - "8000:8000" # Mapeia a porta 8000 do contêiner para a porta 8000 do host
+    depends_on:
+      - go_db # Dependência do contêiner go_db
+    restart: always # Reinicia o contêiner automaticamente em caso de falha
   go_db:
     image: postgres:latest # Usa a imagem oficial do PostgreSQL
     container_name: go_db

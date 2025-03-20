@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	host     = "localhost"
+	host     = "go_db" // go_db docker -- localhost local
 	port     = 5432
 )
 
